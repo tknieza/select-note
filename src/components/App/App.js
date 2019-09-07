@@ -9,9 +9,19 @@ import "./App.scss";
 const App = () => {
   const [notes, setNotes] = useState([
     {
-      heading: "test",
-      text: "lorem30",
+      heading: "Todo 1",
+      text: "lorem10",
       index: 1
+    },
+    {
+      heading: "Todo 2",
+      text: "lorem20",
+      index: 2
+    },
+    {
+      heading: "Todo 3",
+      text: "lorem30",
+      index: 3
     }
   ]);
 

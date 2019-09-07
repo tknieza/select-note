@@ -2,14 +2,10 @@ import React from "react";
 import propTypes from "prop-types";
 import { Card, Text, Heading } from "rebass";
 
-const handleClick = event => {
-  console.log(event.target.innerHTML);
-};
-
-const Notes = ({ heading, index, text }) => (
+const Notes = ({ heading, index, text, handleClick }) => (
   <Card
     as="a"
-    onClick={handleClick}
+    onClick={() => handleClick(index)}
     sx={{
       p: "1rem",
       height: "18rem",
@@ -43,7 +39,8 @@ const Notes = ({ heading, index, text }) => (
 Notes.propTypes = {
   heading: propTypes.string.isRequired,
   index: propTypes.number,
-  text: propTypes.string.isRequired
+  text: propTypes.string.isRequired,
+  handleClick: propTypes.func.isRequired
 };
 
 export default Notes;

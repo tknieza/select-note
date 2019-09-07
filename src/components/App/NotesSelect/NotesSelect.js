@@ -5,6 +5,20 @@ import { Box } from "rebass";
 import Note from "../Note";
 
 const NotesSelect = ({ mode, notes, setNotes }) => {
+  const handleClick = id => {
+    if (mode === "remove") {
+      setNotes(
+        notes.filter(item => {
+          return item.index != id;
+        })
+      );
+    } else if (mode === "view") {
+      // focusNote(id);
+      return;
+    }
+    return;
+  };
+
   return (
     <Box
       sx={{
@@ -16,7 +30,13 @@ const NotesSelect = ({ mode, notes, setNotes }) => {
       }}
     >
       {notes.map(({ heading, text, index }) => (
-        <Note heading={heading} text={text} index={index} key={index} />
+        <Note
+          heading={heading}
+          text={text}
+          index={index}
+          handleClick={handleClick}
+          key={index}
+        />
       ))}
     </Box>
   );
