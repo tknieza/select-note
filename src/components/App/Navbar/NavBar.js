@@ -1,51 +1,48 @@
 import React from "react";
+import propTypes from "prop-types";
+import { Box, Flex, Text, Button } from "rebass";
 
-import { Box, Flex, Text } from "rebass";
-
-export default () => (
-  <Flex
-    sx={{
-      flexWrap: "wrap",
-      bg: "background",
-      marginBottom: "1.5rem",
-      boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)"
-    }}
-  >
-    <Box
-      sx={{
-        p: 3,
-        flexGrow: 1,
-        flexBasis: 256
-      }}
-    >
+const NavBar = ({ mode, setMode }) => {
+  return (
+    <Flex px={2} marginBottom={4} color="white" bg="black" alignItems="center">
       <Text
+        p={2}
+        fontSize={["2rem", "3rem"]}
         sx={{
           fontFamily: "heading",
           fontWeight: "500"
         }}
       >
-        Sidebar
+        {mode[0].toUpperCase() + mode.slice(1)} Mode
       </Text>
-    </Box>
-    <Box
-      sx={{
-        p: 3,
-        flexGrow: 99999,
-        flexBasis: 0,
-        minWidth: 320,
-        bg: "primary"
-      }}
-    >
-      <Text
-        fontSize={["3rem", "5rem", "8rem"]}
-        sx={{
-          color: "background",
-          fontFamily: "heading",
-          fontWeight: "500"
-        }}
-      >
-        Select Note
-      </Text>
-    </Box>
-  </Flex>
-);
+      <Box mx="auto" />
+      <Box>
+        <Button
+          mx={2}
+          variant="primary"
+          onClick={() => {
+            mode === "add" ? setMode("view") : setMode("add");
+          }}
+        >
+          Add
+        </Button>
+        <Button
+          mx={2}
+          variant="secondary"
+          onClick={() => {
+            mode === "remove" ? setMode("view") : setMode("remove");
+          }}
+        >
+          Remove
+        </Button>
+      </Box>
+    </Flex>
+  );
+};
+
+NavBar.propTypes = {
+  mode: propTypes.string,
+  setMode: propTypes.func
+};
+
+export default NavBar;

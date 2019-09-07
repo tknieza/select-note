@@ -1,24 +1,26 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Box, Card, Flex, Text, Heading } from "rebass";
+import { Card, Text, Heading } from "rebass";
 
 const handleClick = event => {
-  console.log(event.target.value);
+  console.log(event.target.innerHTML);
 };
 
-const Notes = ({ index }) => (
+const Notes = ({ heading, index, text }) => (
   <Card
     as="a"
     onClick={handleClick}
     sx={{
       p: "1rem",
+      height: "18rem",
       transition: "box-shadow 0.2s ease",
+      borderRadius: 8,
       ":hover": {
         boxShadow: "0 0 4px rgba(0,0,0,.425);"
       }
     }}
   >
-    <Heading>Card {index}</Heading>
+    <Heading>{heading}</Heading>
     <Text
       fontFamily="body"
       fontWeight="lighter"
@@ -26,17 +28,22 @@ const Notes = ({ index }) => (
         padding: "0.8rem"
       }}
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare lorem
-      metus, ut consequat est consectetur sed. Fusce sollicitudin ante dolor,
-      malesuada mollis lorem vehicula vel. Suspendisse non gravida orci, eget
-      egestas diam. Pellentesque luctus sagittis mi, sed efficitur orci ultrices
-      id.
+      {text}
     </Text>
+    <Heading
+      sx={{
+        textAlign: "right"
+      }}
+    >
+      {index}
+    </Heading>
   </Card>
 );
 
 Notes.propTypes = {
-  index: propTypes.number
+  heading: propTypes.string.isRequired,
+  index: propTypes.number,
+  text: propTypes.string.isRequired
 };
 
 export default Notes;

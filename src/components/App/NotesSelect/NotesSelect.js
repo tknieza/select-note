@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Box, Flex } from "rebass";
+import propTypes from "prop-types";
+import { Box } from "rebass";
 
 import Note from "../Note";
 
-const NotesSelect = ({ notes }) => {
+const NotesSelect = ({ mode, notes, setNotes }) => {
   return (
     <Box
       sx={{
@@ -15,15 +15,17 @@ const NotesSelect = ({ notes }) => {
         gridTemplateColumns: ["repeat(2, 1fr)", "repeat(4, 1fr)"]
       }}
     >
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(item => (
-        <Note key={item} />
+      {notes.map(({ heading, text, index }) => (
+        <Note heading={heading} text={text} index={index} key={index} />
       ))}
     </Box>
   );
 };
 
 NotesSelect.propTypes = {
-  notes: PropTypes.object
+  mode: propTypes.string,
+  notes: propTypes.arrayOf(propTypes.object),
+  setNotes: propTypes.func
 };
 
 export default NotesSelect;
