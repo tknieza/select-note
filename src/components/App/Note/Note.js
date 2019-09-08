@@ -31,7 +31,7 @@ const Notes = ({ heading, index, text, handleClick }) => (
         textAlign: "right"
       }}
     >
-      {index}
+      {index + 1}
     </Heading>
   </Card>
 );

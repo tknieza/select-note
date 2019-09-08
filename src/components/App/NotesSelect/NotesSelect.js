@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import propTypes from "prop-types";
 import { Box } from "rebass";
 
 import Note from "../Note";
 
-const NotesSelect = ({ mode, notes, setNotes }) => {
+const NotesSelect = ({ mode, notes, setNotes, enableView }) => {
   const handleClick = id => {
     if (mode === "remove") {
       setNotes(
@@ -13,7 +13,14 @@ const NotesSelect = ({ mode, notes, setNotes }) => {
         })
       );
     } else if (mode === "view") {
+      // TODO: Write note taking view that this redirects to
       // focusNote(id);
+
+      const note = notes.find(item => {
+        return item.index === id;
+      });
+      console.log(note);
+      enableView(note);
       return;
     }
     return;
@@ -45,7 +52,8 @@ const NotesSelect = ({ mode, notes, setNotes }) => {
 NotesSelect.propTypes = {
   mode: propTypes.string,
   notes: propTypes.arrayOf(propTypes.object),
-  setNotes: propTypes.func
+  setNotes: propTypes.func,
+  enableView: propTypes.func
 };
 
 export default NotesSelect;
