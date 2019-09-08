@@ -4,7 +4,7 @@ import { Box } from "rebass";
 
 import Note from "../Note";
 
-const NotesSelect = ({ mode, notes, setNotes, enableView }) => {
+const NotesSelect = ({ mode, notes, setNotes, enable }) => {
   const handleClick = id => {
     if (mode === "remove") {
       setNotes(
@@ -20,7 +20,7 @@ const NotesSelect = ({ mode, notes, setNotes, enableView }) => {
         return item.index === id;
       });
       console.log(note);
-      enableView(note);
+      enable(note);
       return;
     }
     return;
@@ -53,7 +53,7 @@ NotesSelect.propTypes = {
   mode: propTypes.string,
   notes: propTypes.arrayOf(propTypes.object),
   setNotes: propTypes.func,
-  enableView: propTypes.func
+  enable: propTypes.func
 };
 
 export default NotesSelect;

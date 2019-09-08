@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Login from "./Login";
 import NavBar from "./Navbar";
 import NotesSelect from "./NotesSelect";
-import Modal from "react-modal";
+import NoteModal from "./NoteModal/NoteModal";
 
 import { Box } from "rebass";
 
@@ -33,14 +33,14 @@ const App = () => {
     note: notes[0]
   });
 
-  const enableView = note => {
+  const enableNoteView = note => {
     setView({
       note: note,
       enabled: true
     });
   };
 
-  const disableView = () => {
+  const disableNoteView = () => {
     setView({
       ...view,
       enabled: false
@@ -53,8 +53,6 @@ const App = () => {
   // remove
   const [mode, setMode] = useState("view");
 
-  Modal.setAppElement("#root");
-
   return (
     <Box>
       <NavBar mode={mode} setMode={setMode} />
@@ -62,13 +60,9 @@ const App = () => {
         mode={mode}
         notes={notes}
         setNotes={setNotes}
-        enableView={enableView}
+        enable={enableNoteView}
       />
-      <Modal isOpen={view.enabled} contentLabel="Example Modal">
-        <h2>{view.note.heading}</h2>
-        <button onClick={disableView}>close</button>
-        <div>{view.note.text}</div>
-      </Modal>
+      <NoteModal view={view} disable={disableNoteView} />
     </Box>
   );
 };

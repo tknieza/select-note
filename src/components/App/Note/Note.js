@@ -30,6 +30,7 @@ const Notes = ({ heading, index, text, handleClick }) => (
       sx={{
         textAlign: "right"
       }}
+      color="muted"
     >
       {index + 1}
     </Heading>
