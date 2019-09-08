@@ -36,9 +36,14 @@ const App = () => {
       index: notes.length
     });
 
-    setNotes(newNotes);
+    setNotes(
+      newNotes.map((item, id) => {
+        return { ...item, index: id };
+      })
+    );
+
     // Taking user straight to editing note
-    setCurrentNote(newNotes[newNotes.length - 1]);
+    setCurrentNote(notes[notes.length - 1]);
   };
 
   return (

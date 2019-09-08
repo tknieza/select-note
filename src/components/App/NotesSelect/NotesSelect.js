@@ -5,16 +5,20 @@ import { Box } from "rebass";
 import Note from "../Note";
 
 const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
-  const handleClick = id => {
+  const handleClick = index => {
     if (mode === "remove") {
       setNotes(
-        notes.filter(item => {
-          return item.index != id;
-        })
+        notes
+          .filter(item => {
+            return item.index != index;
+          })
+          .map((item, id) => {
+            return { ...item, index };
+          })
       );
     } else if (mode === "note") {
       const note = notes.find(item => {
-        return item.index === id;
+        return item.index === index;
       });
       setCurrentNote(note);
     }
