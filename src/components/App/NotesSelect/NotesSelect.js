@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import { Box } from "rebass";
 
-import Note from "../Note";
+import Note from "./Note";
 
 const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
   const handleClick = index => {
@@ -13,7 +13,7 @@ const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
             return item.index != index;
           })
           .map((item, id) => {
-            return { ...item, index };
+            return { ...item, id };
           })
       );
     } else if (mode === "note") {

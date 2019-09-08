@@ -8,7 +8,7 @@ const Notes = ({ heading, index, text, handleClick }) => (
     onClick={() => handleClick(index)}
     sx={{
       p: "1rem",
-      height: "18rem",
+      height: ["5rem", "15rem"],
       transition: "box-shadow 0.2s ease",
       borderRadius: 8,
       overflow: "hidden",
@@ -19,7 +19,6 @@ const Notes = ({ heading, index, text, handleClick }) => (
     }}
   >
     <Heading
-      width="100%"
       sx={{
         overflow: "hidden",
         textOverflow: "ellipsis",

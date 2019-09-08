@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 // import Login from "./Login";
 import NavBar from "./Navbar";
+import NoteModal from "./NoteModal";
 import NotesSelect from "./NotesSelect";
-import NoteModal from "./NoteModal/NoteModal";
 
 import { Box } from "rebass";
 
