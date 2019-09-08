@@ -13,7 +13,7 @@ const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
             return item.index != index;
           })
           .map((item, id) => {
-            return { ...item, id };
+            return { ...item, index: id };
           })
       );
     } else if (mode === "note") {
