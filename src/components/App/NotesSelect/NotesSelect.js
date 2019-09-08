@@ -4,7 +4,7 @@ import { Box } from "rebass";
 
 import Note from "../Note";
 
-const NotesSelect = ({ mode, notes, setNotes, enable }) => {
+const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
   const handleClick = id => {
     if (mode === "remove") {
       setNotes(
@@ -12,16 +12,11 @@ const NotesSelect = ({ mode, notes, setNotes, enable }) => {
           return item.index != id;
         })
       );
-    } else if (mode === "view") {
-      // TODO: Write note taking view that this redirects to
-      // focusNote(id);
-
+    } else if (mode === "note") {
       const note = notes.find(item => {
         return item.index === id;
       });
-      console.log(note);
-      enable(note);
-      return;
+      setCurrentNote(note);
     }
     return;
   };
@@ -30,7 +25,7 @@ const NotesSelect = ({ mode, notes, setNotes, enable }) => {
     <Box
       sx={{
         display: "grid",
-        width: "90%",
+        width: "80%",
         margin: "auto",
         gridGap: 3,
         gridTemplateColumns: ["repeat(2, 1fr)", "repeat(4, 1fr)"]
@@ -53,7 +48,7 @@ NotesSelect.propTypes = {
   mode: propTypes.string,
   notes: propTypes.arrayOf(propTypes.object),
   setNotes: propTypes.func,
-  enable: propTypes.func
+  setCurrentNote: propTypes.func
 };
 
 export default NotesSelect;

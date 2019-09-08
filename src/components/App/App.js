@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Login from "./Login";
+// import Login from "./Login";
 import NavBar from "./Navbar";
 import NotesSelect from "./NotesSelect";
 import NoteModal from "./NoteModal/NoteModal";
@@ -10,59 +10,53 @@ import { Box } from "rebass";
 import "./App.scss";
 
 const App = () => {
-  const [notes, setNotes] = useState([
-    {
-      heading: "Todo 1",
-      text: "lorem10",
-      index: 0
-    },
-    {
-      heading: "Todo 2",
-      text: "lorem20",
-      index: 1
-    },
-    {
-      heading: "Todo 3",
-      text: "lorem30",
-      index: 2
-    }
-  ]);
+  const [notes, setNotes] = useState([]);
+  // Modes: note, remove
+  const [mode, setMode] = useState("note");
+  const [currentNote, setCurrentNote] = useState(null);
 
-  const [view, setView] = useState({
-    enabled: false,
-    note: notes[0]
-  });
+  const changeNote = (note, values) => {
+    const newNotes = notes;
 
-  const enableNoteView = note => {
-    setView({
-      note: note,
-      enabled: true
-    });
+    newNotes[note.index] = {
+      ...newNotes[note.index],
+      heading: values[1].value,
+      text: values[2].value
+    };
+
+    setNotes(newNotes);
   };
 
-  const disableNoteView = () => {
-    setView({
-      ...view,
-      enabled: false
-    });
-  };
+  const addNewNote = () => {
+    const newNotes = notes;
 
-  // Modes:
-  // view - default
-  // add
-  // remove
-  const [mode, setMode] = useState("view");
+    newNotes.push({
+      heading: "",
+      text: "",
+      index: notes.length
+    });
+
+    setNotes(newNotes);
+    // Taking user straight to editing note
+    setCurrentNote(newNotes[newNotes.length - 1]);
+  };
 
   return (
     <Box>
-      <NavBar mode={mode} setMode={setMode} />
+      <NavBar mode={mode} setMode={setMode} newNote={addNewNote} />
       <NotesSelect
         mode={mode}
         notes={notes}
         setNotes={setNotes}
-        enable={enableNoteView}
+        setCurrentNote={setCurrentNote}
       />
-      <NoteModal view={view} disable={disableNoteView} />
+      {currentNote && (
+        <NoteModal
+          currentNote={currentNote}
+          disable={() => setCurrentNote(null)}
+          changeNote={changeNote}
+        />
+      )}
     </Box>
   );
 };

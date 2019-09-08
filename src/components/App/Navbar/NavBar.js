@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import { Box, Flex, Text, Button } from "rebass";
 
-const NavBar = ({ mode, setMode }) => {
+const NavBar = ({ mode, setMode, newNote }) => {
   return (
     <Flex px={2} marginBottom={4} color="white" bg="black" alignItems="center">
       <Text
@@ -17,20 +17,14 @@ const NavBar = ({ mode, setMode }) => {
       </Text>
       <Box mx="auto" />
       <Box>
-        <Button
-          mx={2}
-          variant="primary"
-          onClick={() => {
-            mode === "add" ? setMode("view") : setMode("add");
-          }}
-        >
+        <Button mx={2} variant="primary" onClick={newNote}>
           Add
         </Button>
         <Button
           mx={2}
           variant="secondary"
           onClick={() => {
-            mode === "remove" ? setMode("view") : setMode("remove");
+            mode === "remove" ? setMode("note") : setMode("remove");
           }}
         >
           Remove
@@ -41,8 +35,9 @@ const NavBar = ({ mode, setMode }) => {
 };
 
 NavBar.propTypes = {
-  mode: propTypes.string,
-  setMode: propTypes.func
+  mode: propTypes.string.isRequired,
+  setMode: propTypes.func.isRequired,
+  newNote: propTypes.func.isRequired
 };
 
 export default NavBar;

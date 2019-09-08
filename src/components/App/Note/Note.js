@@ -11,17 +11,31 @@ const Notes = ({ heading, index, text, handleClick }) => (
       height: "18rem",
       transition: "box-shadow 0.2s ease",
       borderRadius: 8,
+      overflow: "hidden",
+      userSelect: "none",
       ":hover": {
         boxShadow: "0 0 4px rgba(0,0,0,.425);"
       }
     }}
   >
-    <Heading>{heading}</Heading>
+    <Heading
+      width="100%"
+      sx={{
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }}
+    >
+      {heading}
+    </Heading>
     <Text
       fontFamily="body"
       fontWeight="lighter"
       sx={{
-        padding: "0.8rem"
+        padding: "0.8rem",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        overflowWrap: "break-word"
       }}
     >
       {text}

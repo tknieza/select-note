@@ -2,46 +2,80 @@ import React from "react";
 import propTypes from "prop-types";
 
 import Modal from "react-modal";
-import { Button, Heading, Text } from "rebass";
+import { Box, Button, Heading } from "rebass";
+import { Input, Textarea } from "@rebass/forms";
 
 Modal.setAppElement("#root");
 
-const NoteModal = ({ view, disable, changeHeading, changeContent }) => (
-  <Modal isOpen={view.enabled} contentLabel="Note">
-    <Button
-      onClick={disable}
-      sx={{
-        bg: "red"
-      }}
-    >
-      Exit
-    </Button>
-    <Heading>{view.note.heading}</Heading>
-    <Text
-      fontFamily="body"
-      fontWeight="lighter"
-      sx={{
-        padding: "0.8rem"
-      }}
-    >
-      {view.note.text}
-    </Text>
+const NoteModal = ({ currentNote, disable, changeNote }) => (
+  <Modal isOpen={currentNote !== null} contentLabel="Note">
+    <form id="myform">
+      <Button
+        onClick={e => {
+          changeNote(currentNote, document.forms["myform"]);
+          disable();
+        }}
+        sx={{
+          bg: "red"
+        }}
+      >
+        Exit
+      </Button>
+      <Box margin="1rem 2rem 3rem 2rem">
+        <Input
+          id="heading"
+          name="heading"
+          type="text"
+          placeholder="Heading"
+          defaultValue={currentNote.heading}
+          sx={{
+            padding: "0.5rem",
+            fontFamily: "body",
+            fontSize: ["2rem", "3rem", "5rem"],
+            fontWeight: "bold",
+            border: "none",
+            borderBottom: "2px solid",
+            borderRadius: "0",
+            borderColor: "muted",
+            outline: "none"
+          }}
+        />
+      </Box>
+      <Box margin="1rem 2rem 3rem 2rem">
+        <Textarea
+          id="text"
+          name="text"
+          type="text"
+          placeholder="text"
+          defaultValue={currentNote.text}
+          fontFamily="body"
+          fontWeight="lighter"
+          sx={{
+            fontSize: ["1rem", "1.5rem", "3rem"],
+            padding: "0.5rem",
+            resize: "none",
+            height: "35rem",
+            border: "none",
+            outline: "none"
+          }}
+        />
+      </Box>
+    </form>
     <Heading
       sx={{
         textAlign: "right"
       }}
       color="muted"
     >
-      {view.note.index + 1}
+      {currentNote.index + 1}
     </Heading>
   </Modal>
 );
 
 NoteModal.propTypes = {
-  view: propTypes.object.isRequired,
+  currentNote: propTypes.object.isRequired,
   disable: propTypes.func.isRequired,
-  changeHeading: propTypes.func.isRequired,
-  changeContent: propTypes.func.isRequired
+  changeNote: propTypes.func.isRequired
 };
 
 export default NoteModal;
