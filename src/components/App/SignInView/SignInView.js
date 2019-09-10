@@ -1,8 +1,17 @@
 import React from "react";
-import { Box } from "rebass";
 
-const SignInView = () => {
-  return <Box>Sign in</Box>;
-};
+import SignInForm from "./SignInForm";
+
+import { SignUpLink } from "../SignUpView";
+
+import { Box, Heading } from "rebass";
+
+const SignInView = () => (
+  <Box>
+    <Heading>Sign In</Heading>
+    <SignInForm />
+    <SignUpLink />
+  </Box>
+);
 
 export default SignInView;

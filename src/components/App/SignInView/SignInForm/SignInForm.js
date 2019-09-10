@@ -1,29 +1,28 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 import { Button } from "rebass";
 import { Input } from "@rebass/forms";
 
+import * as ROUTES from "../../../Firebase";
 import { usingFirebase } from "../../../Firebase";
-import * as ROUTES from "../../../../constants/routes";
 
 const INITIAL_STATE = {
   email: "",
-  passwordOne: "",
-  passwordTwo: ""
+  password: ""
 };
 
-class SignUpFormBase extends React.Component {
+class SignInFormBase extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
-
   onSubmit = event => {
-    const { email, passwordOne } = this.state;
+    const { email, password } = this.state;
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
+      .doSignInWithEmailAndPassword(email, password)
+      .then(user => {
+        console.log(user);
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
@@ -32,20 +31,12 @@ class SignUpFormBase extends React.Component {
       });
     event.preventDefault();
   };
-
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
   render() {
-    const { email, passwordOne, passwordTwo } = this.state;
-
-    const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === "" ||
-      email === "" ||
-      passwordOne.length < 6;
-
+    const { email, password } = this.state;
+    const isInvalid = password === "" || email === "";
     return (
       <form onSubmit={this.onSubmit}>
         <Input
@@ -56,27 +47,20 @@ class SignUpFormBase extends React.Component {
           placeholder="Email Address"
         />
         <Input
-          name="passwordOne"
-          value={passwordOne}
+          name="password"
+          value={password}
           onChange={this.onChange}
           type="password"
           placeholder="Password"
         />
-        <Input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
         <Button disabled={isInvalid} type="submit">
-          Sign Up
+          Sign In
         </Button>
       </form>
     );
   }
 }
 
-const SignUpForm = withRouter(usingFirebase(SignUpFormBase));
+const SignInForm = withRouter(usingFirebase(SignInFormBase));
 
-export default SignUpForm;
+export default SignInForm;

@@ -1,12 +1,16 @@
 import React from "react";
-import { Box, Text } from "rebass";
+import { Link } from "react-router-dom";
+import { Box, Text, Heading } from "rebass";
 
 import SignUpForm from "./SignUpForm";
 import { withFirebase } from "../../Firebase";
 
+import * as ROUTES from "../../../constants/routes";
+
 const SignUpView = () => {
   return (
     <Box>
+      <Heading>Sign Up</Heading>
       <SignUpForm />
     </Box>
   );
