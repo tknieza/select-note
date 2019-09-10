@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Box, Text, Heading } from "rebass";
 
 import SignUpForm from "./SignUpForm";
-import { withFirebase } from "../../Firebase";
 
 import * as ROUTES from "../../../constants/routes";
 

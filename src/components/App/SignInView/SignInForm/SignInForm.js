@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Button } from "rebass";
 import { Input } from "@rebass/forms";
 
-import * as ROUTES from "../../../Firebase";
+import * as ROUTES from "../../../../constants/routes";
 import { usingFirebase } from "../../../Firebase";
 
 const INITIAL_STATE = {
@@ -21,8 +21,7 @@ class SignInFormBase extends Component {
     const { email, password } = this.state;
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
-      .then(user => {
-        console.log(user);
+      .then(authUser => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
@@ -61,6 +60,4 @@ class SignInFormBase extends Component {
   }
 }
 
-const SignInForm = withRouter(usingFirebase(SignInFormBase));
-
-export default SignInForm;
+export default withRouter(usingFirebase(SignInFormBase));
