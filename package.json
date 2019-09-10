@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.6.0",
     "parcel-bundler": "^1.12.3",
     "sass": "^1.23.0-module.beta.1"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@emotion/core": "^10.0.17",
     "@mdx-js/react": "^1.4.4",
     "@rebass/forms": "^4.0.5",

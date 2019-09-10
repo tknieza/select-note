@@ -17,6 +17,8 @@ const theTheme = {
   }
 };
 
+require("dotenv").config();
+
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
     <ThemeProvider theme={theTheme}>
