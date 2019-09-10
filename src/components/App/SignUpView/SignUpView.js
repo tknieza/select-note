@@ -1,8 +1,21 @@
 import React from "react";
-import { Box } from "rebass";
+import { Box, Text } from "rebass";
+
+import SignUpForm from "./SignUpForm";
+import { withFirebase } from "../../Firebase";
 
 const SignUpView = () => {
-  return <Box>Sign up</Box>;
+  return (
+    <Box>
+      <SignUpForm />
+    </Box>
+  );
 };
+
+export const SignUpLink = () => (
+  <Text>
+    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+  </Text>
+);
 
 export default SignUpView;
