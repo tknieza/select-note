@@ -13,6 +13,7 @@ var firebaseConfig = {
 
 class Firebase {
   constructor() {
+    console.log(firebaseConfig);
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
   }
