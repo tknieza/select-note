@@ -1,5 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 
 var firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -15,16 +16,21 @@ class Firebase {
   constructor() {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
+    this.db = app.database();
   }
 
   // AUTH API
-  // TODO: Write error handling
+
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
-
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
-
   doSignOut = () => this.auth.signOut();
+
+  // USER API
+
+  user = () => this.db.ref(`users/${app.auth().currentUser.uid}`);
+  userNotes = () => this.db.ref(`users/${app.auth().currentUser.uid}/notes`);
+  users = () => this.db.ref("users");
 }
 export default Firebase;

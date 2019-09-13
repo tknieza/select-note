@@ -6,11 +6,19 @@ import NotesSelect from "./NotesSelect";
 import NoteModal from "./NoteModal";
 import NavBar from "./NavBar";
 
-const MainView = () => {
+import { usingFirebase } from "../../Firebase";
+
+const MainView = props => {
   const [notes, setNotes] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
   // Modes: note, remove
   const [mode, setMode] = useState("note");
   const [currentNote, setCurrentNote] = useState(null);
+
+  const set = notes => {
+    setNotes(notes);
+    props.firebase.user().set({ notes });
+  };
 
   const changeNote = (note, values) => {
     const newNotes = notes;
@@ -21,11 +29,11 @@ const MainView = () => {
       text: values[2].value
     };
 
-    setNotes(newNotes);
+    set(newNotes);
   };
 
   const addNewNote = () => {
-    const newNotes = notes;
+    let newNotes = notes;
 
     newNotes.push({
       heading: "",
@@ -33,15 +41,31 @@ const MainView = () => {
       index: notes.length
     });
 
-    setNotes(
-      newNotes.map((item, id) => {
-        return { ...item, index: id };
-      })
-    );
+    newNotes = newNotes.map((item, id) => {
+      return { ...item, index: id };
+    });
+
+    set(newNotes);
 
     // Taking user straight to editing note
     setCurrentNote(notes[notes.length - 1]);
   };
+
+  props.firebase.auth.onAuthStateChanged(user => {
+    if (user) {
+      if (notes.length === 0 && !dataLoaded) {
+        props.firebase
+          .userNotes()
+          .once("value")
+          .then(snapshot => {
+            if (snapshot.val()) {
+              setNotes(snapshot.val());
+            }
+          });
+        setDataLoaded(true);
+      }
+    }
+  });
 
   return (
     <Box>
@@ -49,7 +73,7 @@ const MainView = () => {
       <NotesSelect
         mode={mode}
         notes={notes}
-        setNotes={setNotes}
+        setNotes={set}
         setCurrentNote={setCurrentNote}
       />
       {currentNote && (
@@ -63,4 +87,4 @@ const MainView = () => {
   );
 };
 
-export default MainView;
+export default usingFirebase(MainView);
