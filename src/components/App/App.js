@@ -10,8 +10,6 @@ import SignUpView from "./SignUpView";
 import { usingFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
-import "./App.scss";
-
 class App extends React.Component {
   constructor(props) {
     super(props);
