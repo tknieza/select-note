@@ -4,8 +4,18 @@ import { withRouter } from "react-router-dom";
 import { Button } from "rebass";
 import { usingFirebase } from "../../../Firebase";
 
-const NavigationButton = ({ content, route, action, history }) => (
+const NavigationButton = ({
+  content,
+  route,
+  action,
+  history,
+  ...otherProps
+}) => (
   <Button
+    {...otherProps}
+    sx={{
+      backgroundColor: "secondary"
+    }}
     onClick={() => {
       if (action) action();
       history.push(route);

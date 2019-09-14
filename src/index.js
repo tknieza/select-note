@@ -5,12 +5,12 @@ import App from "./components/App";
 import Firebase, { FirebaseContext } from "./components/Firebase";
 
 import { ThemeProvider } from "emotion-theming";
-import theme from "@rebass/preset";
+import baseTheme from "@rebass/preset";
 
-const theTheme = {
-  ...theme,
+const theme = {
+  ...baseTheme,
   fonts: {
-    ...theme.fonts,
+    ...baseTheme.fonts,
     body: "Roboto, sans-serif",
     heading: "Roboto, sans-serif",
     monospace: "Roboto, sans-serif"
@@ -21,7 +21,7 @@ require("dotenv").config();
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
-    <ThemeProvider theme={theTheme}>
+    <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
   </FirebaseContext.Provider>,

@@ -8,22 +8,23 @@ import { usingFirebase } from "../../Firebase";
 import * as ROUTES from "../../../constants/routes";
 
 const SignedInBar = props => (
-  <Flex>
-    <Box p={3} width={1 / 2}>
+  <Flex px={2} color="white" bg="black" alignItems="center">
+    <Box p={3}>
       <NavigationButton
         content="Landing Page"
         route={ROUTES.LANDING}
         history={props.history}
       />
     </Box>
-    <Box p={3} width={1 / 2}>
+    <Box p={3}>
       <NavigationButton
         content="Home"
         route={ROUTES.HOME}
         history={props.history}
       />
     </Box>
-    <Box p={3} width={1 / 2}>
+    <Box mx="auto" />
+    <Box p={3}>
       <NavigationButton
         content="Sign Out"
         route={ROUTES.LANDING}
@@ -35,22 +36,23 @@ const SignedInBar = props => (
 );
 
 const SignedOutBar = props => (
-  <Flex>
-    <Box p={3} width={1 / 2}>
+  <Flex px={2} color="white" bg="black" alignItems="center">
+    <Box p={3}>
       <NavigationButton
         content="Landing Page"
         route={ROUTES.LANDING}
         history={props.history}
       />
     </Box>
-    <Box p={3} width={1 / 2}>
+    <Box mx="auto" />
+    <Box p={3}>
       <NavigationButton
         content="Sign Up"
         route={ROUTES.SIGN_UP}
         history={props.history}
       />
     </Box>
-    <Box p={3} width={1 / 2}>
+    <Box p={3}>
       <NavigationButton
         content="Sign In"
         route={ROUTES.SIGN_IN}
