@@ -18,7 +18,7 @@ const NavigationButton = ({
     }}
     onClick={() => {
       if (action) action();
-      history.push(route);
+      if (route) history.push(route);
     }}
   >
     {content}
