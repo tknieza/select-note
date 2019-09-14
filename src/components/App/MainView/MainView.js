@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { Box } from "rebass";
 
 import NotesSelect from "./NotesSelect";

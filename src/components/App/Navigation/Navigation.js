@@ -1,47 +1,86 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import propTypes from "prop-types";
 
-import SignOutButton from "../SignOutButton";
+import NavigationButton from "./NavigationButton";
 
 import { Box, Flex } from "rebass";
 
+import { usingFirebase } from "../../Firebase";
 import * as ROUTES from "../../../constants/routes";
 
-const SignedIn = () => (
+const SignedInBar = props => (
   <Flex>
-    <Box p={3} width={1 / 2} bg="white">
-      <Link to={ROUTES.LANDING}>Landing</Link>
+    <Box p={3} width={1 / 2}>
+      <NavigationButton
+        content="Landing Page"
+        route={ROUTES.LANDING}
+        history={props.history}
+      />
     </Box>
-    <Box p={3} width={1 / 2} bg="white">
-      <Link to={ROUTES.HOME}>Home</Link>
+    <Box p={3} width={1 / 2}>
+      <NavigationButton
+        content="Home"
+        route={ROUTES.HOME}
+        history={props.history}
+      />
     </Box>
-    <Box p={3} width={1 / 2} bg="white">
-      <SignOutButton />
+    <Box p={3} width={1 / 2}>
+      <NavigationButton
+        content="Sign Out"
+        route={ROUTES.LANDING}
+        action={props.firebase.doSignOut}
+        history={props.history}
+      />
     </Box>
   </Flex>
 );
 
-const NotSignedIn = () => (
+const SignedOutBar = props => (
   <Flex>
-    <Box p={3} width={1 / 2} bg="white">
-      <Link to={ROUTES.LANDING}>Landing</Link>
+    <Box p={3} width={1 / 2}>
+      <NavigationButton
+        content="Landing Page"
+        route={ROUTES.LANDING}
+        history={props.history}
+      />
     </Box>
-    <Box p={3} width={1 / 2} bg="white">
-      <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    <Box p={3} width={1 / 2}>
+      <NavigationButton
+        content="Sign Up"
+        route={ROUTES.SIGN_UP}
+        history={props.history}
+      />
     </Box>
-    <Box p={3} width={1 / 2} bg="white">
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    <Box p={3} width={1 / 2}>
+      <NavigationButton
+        content="Sign In"
+        route={ROUTES.SIGN_IN}
+        history={props.history}
+      />
     </Box>
   </Flex>
 );
 
-const Navigation = ({ authUser }) => {
-  return authUser ? <SignedIn /> : <NotSignedIn />;
+const Navigation = ({ authUser, ...otherProps }) => {
+  return (
+    <Box
+      sx={{
+        backgroundColor: "primary",
+        color: "secondary"
+      }}
+    >
+      {authUser ? (
+        <SignedInBar {...otherProps} />
+      ) : (
+        <SignedOutBar {...otherProps} />
+      )}
+    </Box>
+  );
 };
 
-Navigation.propTypes = {
-  authUser: propTypes.object
-};
+import("prop-types").then(propTypes => {
+  Navigation.propTypes = {
+    authUser: propTypes.object
+  };
+});
 
-export default Navigation;
+export default usingFirebase(Navigation);

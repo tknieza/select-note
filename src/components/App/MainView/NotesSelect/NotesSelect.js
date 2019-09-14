@@ -1,7 +1,5 @@
 import React from "react";
-import propTypes from "prop-types";
 import { Box } from "rebass";
-
 import Note from "./Note";
 
 const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
@@ -48,11 +46,13 @@ const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
   );
 };
 
-NotesSelect.propTypes = {
-  mode: propTypes.string,
-  notes: propTypes.arrayOf(propTypes.object),
-  setNotes: propTypes.func,
-  setCurrentNote: propTypes.func
-};
+import("prop-types").then(propTypes => {
+  NotesSelect.propTypes = {
+    mode: propTypes.string,
+    notes: propTypes.arrayOf(propTypes.object),
+    setNotes: propTypes.func,
+    setCurrentNote: propTypes.func
+  };
+});
 
 export default NotesSelect;
