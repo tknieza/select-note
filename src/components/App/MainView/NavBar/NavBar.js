@@ -1,35 +1,40 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Box, Flex, Text, Button } from "rebass";
+
+import { diffRemoved } from "react-icons-kit/oct/diffRemoved";
+import { diffAdded } from "react-icons-kit/oct/diffAdded";
+
+import NavigationButton from "../../Navigation/NavigationButton";
+import { Flex } from "rebass";
 
 const NavBar = ({ mode, setMode, newNote }) => {
   return (
-    <Flex px={2} marginBottom={4} color="white" bg="black" alignItems="center">
-      <Text
-        p={2}
-        fontSize={["2rem", "3rem"]}
+    <Flex
+      color="white"
+      sx={{
+        position: "fixed",
+        right: 0,
+        bottom: 0
+      }}
+    >
+      <NavigationButton
+        m={2}
+        icon={diffAdded}
+        onClick={newNote}
         sx={{
-          fontFamily: "heading",
-          fontWeight: "500"
+          background: "green"
         }}
-      >
-        {mode[0].toUpperCase() + mode.slice(1)} Mode
-      </Text>
-      <Box mx="auto" />
-      <Box>
-        <Button mx={2} variant="primary" onClick={newNote}>
-          Add
-        </Button>
-        <Button
-          mx={2}
-          variant="secondary"
-          onClick={() => {
-            mode === "remove" ? setMode("note") : setMode("remove");
-          }}
-        >
-          Remove
-        </Button>
-      </Box>
+      />
+      <NavigationButton
+        m={2}
+        icon={diffRemoved}
+        onClick={() => {
+          mode === "remove" ? setMode("note") : setMode("remove");
+        }}
+        sx={{
+          background: "tomato"
+        }}
+      />
     </Flex>
   );
 };

@@ -7,8 +7,14 @@ import { Input, Textarea } from "@rebass/forms";
 
 Modal.setAppElement("#root");
 
+const customStyles = {
+  content: {
+    marginTop: "5rem"
+  }
+};
+
 const NoteModal = ({ currentNote, disable, changeNote }) => (
-  <Modal isOpen={currentNote !== null} contentLabel="Note">
+  <Modal isOpen={currentNote !== null} contentLabel="Note" style={customStyles}>
     <form id="myform">
       <Button
         onClick={e => {

@@ -2,6 +2,12 @@ import React from "react";
 
 import NavigationButton from "./NavigationButton";
 
+import { signIn } from "react-icons-kit/oct/signIn";
+import { signOut } from "react-icons-kit/oct/signOut";
+import { home } from "react-icons-kit/oct/home";
+import { note } from "react-icons-kit/oct/note";
+import { user } from "react-icons-kit/entypo/user";
+
 import { Box, Flex } from "rebass";
 
 import { usingFirebase } from "../../Firebase";
@@ -11,25 +17,28 @@ const SignedInBar = props => (
   <Flex px={2} color="white" bg="black" alignItems="center">
     <Box p={3}>
       <NavigationButton
-        content="Landing Page"
+        content="Home"
         route={ROUTES.LANDING}
         history={props.history}
+        icon={note}
       />
     </Box>
     <Box p={3}>
       <NavigationButton
-        content="Home"
+        content="Notes"
         route={ROUTES.HOME}
         history={props.history}
+        icon={home}
       />
     </Box>
     <Box mx="auto" />
     <Box p={3}>
       <NavigationButton
-        content="Sign Out"
+        content="Logout"
         route={ROUTES.LANDING}
         action={props.firebase.doSignOut}
         history={props.history}
+        icon={signOut}
       />
     </Box>
   </Flex>
@@ -39,24 +48,27 @@ const SignedOutBar = props => (
   <Flex px={2} color="white" bg="black" alignItems="center">
     <Box p={3}>
       <NavigationButton
-        content="Landing Page"
+        content="Landing"
         route={ROUTES.LANDING}
         history={props.history}
+        icon={note}
       />
     </Box>
     <Box mx="auto" />
     <Box p={3}>
       <NavigationButton
-        content="Sign Up"
+        content="Register"
         route={ROUTES.SIGN_UP}
         history={props.history}
+        icon={user}
       />
     </Box>
     <Box p={3}>
       <NavigationButton
-        content="Sign In"
+        content="Login"
         route={ROUTES.SIGN_IN}
         history={props.history}
+        icon={signIn}
       />
     </Box>
   </Flex>
@@ -67,7 +79,12 @@ const Navigation = ({ authUser, ...otherProps }) => {
     <Box
       sx={{
         backgroundColor: "primary",
-        color: "secondary"
+        color: "secondary",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        zIndex: 999
       }}
     >
       {authUser ? (
