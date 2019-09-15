@@ -20,7 +20,7 @@ const SignedInBar = props => (
         content="Home"
         route={ROUTES.LANDING}
         history={props.history}
-        icon={note}
+        icon={home}
       />
     </Box>
     <Box p={3}>
@@ -28,7 +28,7 @@ const SignedInBar = props => (
         content="Notes"
         route={ROUTES.HOME}
         history={props.history}
-        icon={home}
+        icon={note}
       />
     </Box>
     <Box mx="auto" />
@@ -48,10 +48,10 @@ const SignedOutBar = props => (
   <Flex px={2} color="white" bg="black" alignItems="center">
     <Box p={3}>
       <NavigationButton
-        content="Landing"
+        content="Home"
         route={ROUTES.LANDING}
         history={props.history}
-        icon={note}
+        icon={home}
       />
     </Box>
     <Box mx="auto" />
