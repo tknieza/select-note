@@ -1,5 +1,4 @@
 import React from "react";
-import propTypes from "prop-types";
 import { Card, Text, Heading } from "rebass";
 
 const Notes = ({ heading, index, text, handleClick }) => (
@@ -50,11 +49,13 @@ const Notes = ({ heading, index, text, handleClick }) => (
   </Card>
 );
 
-Notes.propTypes = {
-  heading: propTypes.string.isRequired,
-  index: propTypes.number,
-  text: propTypes.string.isRequired,
-  handleClick: propTypes.func.isRequired
-};
+import("prop-types").then(propTypes => {
+  Notes.propTypes = {
+    heading: propTypes.string.isRequired,
+    index: propTypes.number,
+    text: propTypes.string.isRequired,
+    handleClick: propTypes.func.isRequired
+  };
+});
 
 export default Notes;

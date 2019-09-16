@@ -1,5 +1,4 @@
 import React from "react";
-import propTypes from "prop-types";
 
 import Modal from "react-modal";
 import { Box, Button, Heading } from "rebass";
@@ -78,10 +77,12 @@ const NoteModal = ({ currentNote, disable, changeNote }) => (
   </Modal>
 );
 
-NoteModal.propTypes = {
-  currentNote: propTypes.object.isRequired,
-  disable: propTypes.func.isRequired,
-  changeNote: propTypes.func.isRequired
-};
+import("prop-types").then(propTypes => {
+  NoteModal.propTypes = {
+    currentNote: propTypes.object.isRequired,
+    disable: propTypes.func.isRequired,
+    changeNote: propTypes.func.isRequired
+  };
+});
 
 export default NoteModal;

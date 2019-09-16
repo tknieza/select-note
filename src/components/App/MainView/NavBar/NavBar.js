@@ -1,5 +1,4 @@
 import React from "react";
-import propTypes from "prop-types";
 
 import { diffRemoved } from "react-icons-kit/oct/diffRemoved";
 import { diffAdded } from "react-icons-kit/oct/diffAdded";
@@ -39,10 +38,12 @@ const NavBar = ({ mode, setMode, newNote }) => {
   );
 };
 
-NavBar.propTypes = {
-  mode: propTypes.string.isRequired,
-  setMode: propTypes.func.isRequired,
-  newNote: propTypes.func.isRequired
-};
+import("prop-types").then(propTypes => {
+  NavBar.propTypes = {
+    mode: propTypes.string.isRequired,
+    setMode: propTypes.func.isRequired,
+    newNote: propTypes.func.isRequired
+  };
+});
 
 export default NavBar;
