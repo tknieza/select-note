@@ -1,10 +1,11 @@
 # Select Note
 
+![Select Note](./src/images/default.svg)
+
 > A note-taking web application with simplicity in mind.
 
 ![License][license]
 ![Build Status][netlify-build]
-![Parcel Version][parcel-version]
 
 TODO
 
