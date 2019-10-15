@@ -2,10 +2,10 @@ import React from "react";
 import { Box } from "rebass";
 import Note from "./Note";
 
-const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
+const NotesSelect = ({ mode, notes, syncNewNotes, setCurrentNote }) => {
   const handleClick = index => {
     if (mode === "remove") {
-      setNotes(
+      syncNewNotes(
         notes
           .filter(item => {
             return item.index != index;
@@ -29,6 +29,7 @@ const NotesSelect = ({ mode, notes, setNotes, setCurrentNote }) => {
         display: "grid",
         width: "80%",
         margin: "auto",
+        paddingTop: "1rem",
         gridGap: 3,
         gridTemplateColumns: ["repeat(2, 1fr)", "repeat(4, 1fr)"]
       }}
@@ -50,7 +51,7 @@ import("prop-types").then(propTypes => {
   NotesSelect.propTypes = {
     mode: propTypes.string,
     notes: propTypes.arrayOf(propTypes.object),
-    setNotes: propTypes.func,
+    syncNewNotes: propTypes.func,
     setCurrentNote: propTypes.func
   };
 });

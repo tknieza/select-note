@@ -6,7 +6,7 @@ import { diffAdded } from "react-icons-kit/oct/diffAdded";
 import NavigationButton from "../../Navigation/NavigationButton";
 import { Flex } from "rebass";
 
-const NavBar = ({ mode, setMode, newNote }) => {
+const NavigationBar = ({ mode, setMode, newNote }) => {
   return (
     <Flex
       color="white"
@@ -39,11 +39,11 @@ const NavBar = ({ mode, setMode, newNote }) => {
 };
 
 import("prop-types").then(propTypes => {
-  NavBar.propTypes = {
+  NavigationBar.propTypes = {
     mode: propTypes.string.isRequired,
     setMode: propTypes.func.isRequired,
     newNote: propTypes.func.isRequired
   };
 });
 
-export default NavBar;
+export default NavigationBar;

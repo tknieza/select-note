@@ -3,18 +3,17 @@ import { Box } from "rebass";
 
 import NotesSelect from "./NotesSelect";
 import NoteModal from "./NoteModal";
-import NavBar from "./NavBar";
+import NavigationBar from "./NavigationBar";
 
 import { usingFirebase } from "../../Firebase";
 
 const MainView = props => {
   const [notes, setNotes] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
-  // Modes: note, remove
   const [mode, setMode] = useState("note");
   const [currentNote, setCurrentNote] = useState(null);
 
-  const set = notes => {
+  const syncNewNotes = notes => {
     setNotes(notes);
     props.firebase.user().set({ notes });
   };
@@ -28,7 +27,7 @@ const MainView = props => {
       text: values[2].value
     };
 
-    set(newNotes);
+    syncNewNotes(newNotes);
   };
 
   const addNewNote = () => {
@@ -44,9 +43,9 @@ const MainView = props => {
       return { ...item, index: id };
     });
 
-    set(newNotes);
+    syncNewNotes(newNotes);
 
-    // Taking user straight to editing note
+    // Taking user straight to note editing screen
     setCurrentNote(notes[notes.length - 1]);
   };
 
@@ -68,11 +67,11 @@ const MainView = props => {
 
   return (
     <Box>
-      <NavBar mode={mode} setMode={setMode} newNote={addNewNote} />
+      <NavigationBar mode={mode} setMode={setMode} newNote={addNewNote} />
       <NotesSelect
         mode={mode}
         notes={notes}
-        setNotes={set}
+        syncNewNotes={syncNewNotes}
         setCurrentNote={setCurrentNote}
       />
       {currentNote && (

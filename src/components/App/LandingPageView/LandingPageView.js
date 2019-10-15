@@ -1,5 +1,8 @@
 import React from "react";
-import { Box } from "rebass";
+import { Box, Text, Image } from "rebass";
+
+import logo from "../../../images/default-monochrome-white.svg";
+import image from "../../../images/27-desktop.png";
 
 const LandingPageView = () => {
   return (
@@ -7,23 +10,37 @@ const LandingPageView = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "90vh"
+        minHeight: "100vh"
       }}
     >
       <Box
         sx={{
           flex: "1 1 auto",
-          p: 3
+          backgroundColor: "#273ECC"
         }}
       >
-        Content
-      </Box>
-      <Box
-        sx={{
-          p: 3
-        }}
-      >
-        Footer
+        <Image
+          sx={{
+            margin: "auto"
+          }}
+          src={image}
+          alt="logo"
+        />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          <Image
+            sx={{
+              margin: "auto"
+            }}
+            src={logo}
+            alt="logo"
+            height="10rem"
+          />
+        </Box>
       </Box>
     </Box>
   );

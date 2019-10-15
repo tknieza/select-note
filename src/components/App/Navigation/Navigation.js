@@ -1,21 +1,21 @@
 import React from "react";
 
 import NavigationButton from "./NavigationButton";
+import { Box, Flex } from "rebass";
 
+// Icons
 import { signIn } from "react-icons-kit/oct/signIn";
 import { signOut } from "react-icons-kit/oct/signOut";
 import { home } from "react-icons-kit/oct/home";
 import { note } from "react-icons-kit/oct/note";
 import { user } from "react-icons-kit/entypo/user";
 
-import { Box, Flex } from "rebass";
-
 import { usingFirebase } from "../../Firebase";
 import * as ROUTES from "../../../constants/routes";
 
 const SignedInBar = props => (
-  <Flex px={2} color="white" bg="black" alignItems="center">
-    <Box p={3}>
+  <Flex p={2} color="white" bg="black" alignItems="center">
+    <Box>
       <NavigationButton
         content="Home"
         route={ROUTES.LANDING}
@@ -23,7 +23,8 @@ const SignedInBar = props => (
         icon={home}
       />
     </Box>
-    <Box p={3}>
+    <Box mx="0.5rem" />
+    <Box>
       <NavigationButton
         content="Notes"
         route={ROUTES.HOME}
@@ -32,7 +33,7 @@ const SignedInBar = props => (
       />
     </Box>
     <Box mx="auto" />
-    <Box p={3}>
+    <Box>
       <NavigationButton
         content="Logout"
         route={ROUTES.LANDING}
@@ -45,8 +46,8 @@ const SignedInBar = props => (
 );
 
 const SignedOutBar = props => (
-  <Flex px={2} color="white" bg="black" alignItems="center">
-    <Box p={3}>
+  <Flex p={2} color="white" bg="black" alignItems="center">
+    <Box>
       <NavigationButton
         content="Home"
         route={ROUTES.LANDING}
@@ -55,7 +56,7 @@ const SignedOutBar = props => (
       />
     </Box>
     <Box mx="auto" />
-    <Box p={3}>
+    <Box>
       <NavigationButton
         content="Register"
         route={ROUTES.SIGN_UP}
@@ -63,7 +64,8 @@ const SignedOutBar = props => (
         icon={user}
       />
     </Box>
-    <Box p={3}>
+    <Box mx="0.5rem" />
+    <Box>
       <NavigationButton
         content="Login"
         route={ROUTES.SIGN_IN}
