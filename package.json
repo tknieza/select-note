@@ -11,28 +11,29 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.6.0",
+    "@babel/core": "^7.8.3",
+    "@types/rebass": "^4.0.4",
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.4.0",
-    "eslint-plugin-react": "^7.14.3",
-    "parcel-bundler": "^1.12.3",
-    "sass": "^1.23.0-module.beta.1"
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.18.0",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.25.0"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@emotion/core": "^10.0.17",
-    "@mdx-js/react": "^1.4.4",
-    "@rebass/forms": "^4.0.5",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@emotion/core": "^10.0.27",
+    "@mdx-js/react": "^1.5.5",
+    "@rebass/forms": "^4.0.6",
     "@rebass/preset": "^4.0.5",
-    "@theme-ui/presets": "^0.2.40",
-    "emotion-theming": "^10.0.17",
-    "firebase": "^6.6.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "@theme-ui/presets": "^0.2.44",
+    "emotion-theming": "^10.0.27",
+    "firebase": "^6.6.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-icons-kit": "^1.3.1",
-    "react-modal": "^3.10.1",
-    "react-router-dom": "^5.0.1",
-    "rebass": "^4.0.5",
-    "theme-ui": "^0.2.41"
+    "react-modal": "^3.11.1",
+    "react-router-dom": "^5.1.2",
+    "rebass": "^4.0.7",
+    "theme-ui": "^0.2.52"
   }
 }

@@ -15,7 +15,6 @@ const NavigationButton = ({
 }) => (
   <Button
     sx={{
-      backgroundColor: "secondary",
       display: "flex"
     }}
     onClick={() => {
@@ -26,20 +25,10 @@ const NavigationButton = ({
   >
     {icon && (
       <Box p={1}>
-        <Icon size={24} icon={icon} />
+        <Icon icon={icon} />
       </Box>
     )}
-    {content && (
-      <Text
-        p={1}
-        height="100%"
-        sx={{
-          margin: "auto"
-        }}
-      >
-        {content}
-      </Text>
-    )}
+    {content && <Text p={1}>{content}</Text>}
   </Button>
 );
 

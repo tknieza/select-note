@@ -14,7 +14,20 @@ import { usingFirebase } from "../../Firebase";
 import * as ROUTES from "../../../constants/routes";
 
 const SignedInBar = props => (
-  <Flex p={2} color="white" bg="black" alignItems="center">
+  <Flex
+    p={2}
+    backgroundColor="background"
+    alignItems="center"
+    sx={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "4rem",
+      zIndex: 999,
+      marginBottom: "10rem"
+    }}
+  >
     <Box>
       <NavigationButton
         content="Home"
@@ -46,7 +59,20 @@ const SignedInBar = props => (
 );
 
 const SignedOutBar = props => (
-  <Flex p={2} color="white" bg="black" alignItems="center">
+  <Flex
+    p={2}
+    backgroundColor="background"
+    alignItems="center"
+    sx={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "4rem",
+      zIndex: 999,
+      marginBottom: "10rem"
+    }}
+  >
     <Box>
       <NavigationButton
         content="Home"
@@ -78,23 +104,13 @@ const SignedOutBar = props => (
 
 const Navigation = ({ authUser, ...otherProps }) => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "primary",
-        color: "secondary",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        zIndex: 999
-      }}
-    >
+    <>
       {authUser ? (
         <SignedInBar {...otherProps} />
       ) : (
         <SignedOutBar {...otherProps} />
       )}
-    </Box>
+    </>
   );
 };
 

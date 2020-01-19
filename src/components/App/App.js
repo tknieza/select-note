@@ -8,6 +8,8 @@ import SignInView from "./SignInView";
 import SignUpView from "./SignUpView";
 
 import { usingFirebase } from "../Firebase";
+import { ThemeProvider } from "emotion-theming";
+
 import * as ROUTES from "../../constants/routes";
 
 class App extends React.Component {
@@ -15,7 +17,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      authUser: null
+      authUser: null,
+      currentTheme: 0
     };
   }
 
@@ -29,13 +32,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <Navigation authUser={this.state.authUser} />
-        <Route exact path={ROUTES.LANDING} component={LandingPageView} />
-        <Route path={ROUTES.SIGN_UP} component={SignUpView} />
-        <Route path={ROUTES.SIGN_IN} component={SignInView} />
-        <Route path={ROUTES.HOME} component={MainView} />
-      </Router>
+      <ThemeProvider theme={this.props.themes[this.state.currentTheme].theme}>
+        <Router>
+          <Navigation authUser={this.state.authUser} />
+          <Route exact path={ROUTES.LANDING}>
+            <LandingPageView
+              darkmode={this.props.themes[this.state.currentTheme].dark}
+            />
+          </Route>
+          <Route path={ROUTES.SIGN_UP} component={SignUpView} />
+          <Route path={ROUTES.SIGN_IN} component={SignInView} />
+          <Route path={ROUTES.HOME} component={MainView} />
+        </Router>
+      </ThemeProvider>
     );
   }
 }

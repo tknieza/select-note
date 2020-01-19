@@ -21,7 +21,10 @@ const NavigationBar = ({ mode, setMode, newNote }) => {
         icon={diffAdded}
         onClick={newNote}
         sx={{
-          background: "green"
+          background: "green",
+          width: "4rem",
+          height: "4rem",
+          borderRadius: "4rem"
         }}
       />
       <NavigationButton
@@ -31,7 +34,10 @@ const NavigationBar = ({ mode, setMode, newNote }) => {
           mode === "remove" ? setMode("note") : setMode("remove");
         }}
         sx={{
-          background: "tomato"
+          background: "tomato",
+          width: "4rem",
+          height: "4rem",
+          borderRadius: "4rem"
         }}
       />
     </Flex>
