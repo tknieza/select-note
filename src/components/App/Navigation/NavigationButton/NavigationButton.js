@@ -15,7 +15,18 @@ const NavigationButton = ({
 }) => (
   <Button
     sx={{
-      display: "flex"
+      display: "flex",
+      outline: "none",
+      border: "1px solid",
+      borderColor: "primary",
+      transition: "all 0.12s ease-out",
+      ":hover": {
+        borderColor: "background"
+      },
+
+      ":active": {
+        backgroundColor: "background"
+      }
     }}
     onClick={() => {
       if (action) action();

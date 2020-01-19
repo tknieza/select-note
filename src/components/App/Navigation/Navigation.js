@@ -1,7 +1,7 @@
 import React from "react";
 
 import NavigationButton from "./NavigationButton";
-import { Box, Flex } from "rebass";
+import { Box, Flex, Image } from "rebass";
 
 // Icons
 import { signIn } from "react-icons-kit/oct/signIn";
@@ -10,113 +10,98 @@ import { home } from "react-icons-kit/oct/home";
 import { note } from "react-icons-kit/oct/note";
 import { user } from "react-icons-kit/entypo/user";
 
+import LogoLight from "../../../images/isolated-monochrome-white.svg";
+
 import { usingFirebase } from "../../Firebase";
 import * as ROUTES from "../../../constants/routes";
 
-const SignedInBar = props => (
-  <Flex
-    p={2}
-    backgroundColor="background"
-    alignItems="center"
-    sx={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "4rem",
-      zIndex: 999,
-      marginBottom: "10rem"
-    }}
-  >
-    <Box>
-      <NavigationButton
-        content="Home"
-        route={ROUTES.LANDING}
-        history={props.history}
-        icon={home}
-      />
-    </Box>
-    <Box mx="0.5rem" />
-    <Box>
-      <NavigationButton
-        content="Notes"
-        route={ROUTES.HOME}
-        history={props.history}
-        icon={note}
-      />
-    </Box>
-    <Box mx="auto" />
-    <Box>
-      <NavigationButton
-        content="Logout"
-        route={ROUTES.LANDING}
-        action={props.firebase.doSignOut}
-        history={props.history}
-        icon={signOut}
-      />
-    </Box>
-  </Flex>
-);
-
-const SignedOutBar = props => (
-  <Flex
-    p={2}
-    backgroundColor="background"
-    alignItems="center"
-    sx={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "4rem",
-      zIndex: 999,
-      marginBottom: "10rem"
-    }}
-  >
-    <Box>
-      <NavigationButton
-        content="Home"
-        route={ROUTES.LANDING}
-        history={props.history}
-        icon={home}
-      />
-    </Box>
-    <Box mx="auto" />
-    <Box>
-      <NavigationButton
-        content="Register"
-        route={ROUTES.SIGN_UP}
-        history={props.history}
-        icon={user}
-      />
-    </Box>
-    <Box mx="0.5rem" />
-    <Box>
-      <NavigationButton
-        content="Login"
-        route={ROUTES.SIGN_IN}
-        history={props.history}
-        icon={signIn}
-      />
-    </Box>
-  </Flex>
-);
-
-const Navigation = ({ authUser, ...otherProps }) => {
+const Navigation = ({ authUser, history, firebase }) => {
   return (
-    <>
+    <Flex
+      p={2}
+      backgroundColor="primary"
+      alignItems="center"
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "4rem",
+        zIndex: 999,
+        marginBottom: "10rem"
+      }}
+    >
+      <Box mx="0.5rem" />
+      <Box>
+        <Image
+          src={LogoLight}
+          alt="logo"
+          height="3rem"
+          sx={{ paddingTop: "4px" }}
+        />
+      </Box>
+      <Box mx="0.5rem" />
+      <Box>
+        <NavigationButton
+          content="Home"
+          route={ROUTES.LANDING}
+          history={history}
+          icon={home}
+        />
+      </Box>
+      <Box mx="0.5rem" />
+
       {authUser ? (
-        <SignedInBar {...otherProps} />
+        <Box>
+          <NavigationButton
+            content="Notes"
+            route={ROUTES.HOME}
+            history={history}
+            icon={note}
+          />
+        </Box>
+      ) : null}
+
+      <Box mx="auto" />
+      {authUser ? (
+        <Box>
+          <NavigationButton
+            content="Logout"
+            route={ROUTES.LANDING}
+            action={firebase.doSignOut}
+            history={history}
+            icon={signOut}
+          />
+        </Box>
       ) : (
-        <SignedOutBar {...otherProps} />
+        <>
+          <Box>
+            <NavigationButton
+              content="Register"
+              route={ROUTES.SIGN_UP}
+              history={history}
+              icon={user}
+            />
+          </Box>
+          <Box>
+            <NavigationButton
+              content="Login"
+              route={ROUTES.SIGN_IN}
+              history={history}
+              icon={signIn}
+            />
+          </Box>
+        </>
       )}
-    </>
+    </Flex>
   );
 };
 
 import("prop-types").then(propTypes => {
   Navigation.propTypes = {
-    authUser: propTypes.object
+    authUser: propTypes.object,
+    history: propTypes.object,
+    firebase: propTypes.object
   };
 });
 

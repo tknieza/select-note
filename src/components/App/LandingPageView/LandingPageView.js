@@ -29,7 +29,6 @@ const LandingPageView = ({ darkmode }) => {
             src={darkmode ? LogoLight : LogoDark}
             alt="logo"
             height="10rem"
-            sx={{ fill: "#ff00ff", color: "red" }}
           />
         </Box>
 

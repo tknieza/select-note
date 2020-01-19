@@ -1,10 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
 import App from "./components/App";
 import Firebase, { FirebaseContext } from "./components/Firebase";
-
-import { ThemeProvider } from "emotion-theming";
 import * as THEMES from "@theme-ui/presets";
 
 const themes = [
