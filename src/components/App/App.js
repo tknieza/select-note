@@ -30,11 +30,22 @@ class App extends React.Component {
     });
   }
 
+  handleClick = () => {
+    this.setState({
+      currentTheme:
+        this.state.currentTheme + 1 < this.props.themes.length
+          ? this.state.currentTheme + 1
+          : 0
+    });
+  };
   render() {
     return (
       <ThemeProvider theme={this.props.themes[this.state.currentTheme].theme}>
         <Router>
-          <Navigation authUser={this.state.authUser} />
+          <Navigation
+            authUser={this.state.authUser}
+            changeTheme={this.handleClick}
+          />
           <Route exact path={ROUTES.LANDING}>
             <LandingPageView
               darkmode={this.props.themes[this.state.currentTheme].dark}

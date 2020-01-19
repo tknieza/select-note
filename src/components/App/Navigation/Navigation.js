@@ -1,7 +1,7 @@
 import React from "react";
 
 import NavigationButton from "./NavigationButton";
-import { Box, Flex, Image } from "rebass";
+import { Box, Flex, Image, Button } from "rebass";
 
 // Icons
 import { signIn } from "react-icons-kit/oct/signIn";
@@ -9,13 +9,14 @@ import { signOut } from "react-icons-kit/oct/signOut";
 import { home } from "react-icons-kit/oct/home";
 import { note } from "react-icons-kit/oct/note";
 import { user } from "react-icons-kit/entypo/user";
+import { browser } from "react-icons-kit/oct/browser";
 
 import LogoLight from "../../../images/isolated-monochrome-white.svg";
 
 import { usingFirebase } from "../../Firebase";
 import * as ROUTES from "../../../constants/routes";
 
-const Navigation = ({ authUser, history, firebase }) => {
+const Navigation = ({ authUser, changeTheme, history, firebase }) => {
   return (
     <Flex
       p={2}
@@ -62,6 +63,10 @@ const Navigation = ({ authUser, history, firebase }) => {
         </Box>
       ) : null}
 
+      {changeTheme ? (
+        <NavigationButton action={changeTheme} icon={browser} />
+      ) : null}
+
       <Box mx="auto" />
       {authUser ? (
         <Box>
@@ -100,6 +105,7 @@ const Navigation = ({ authUser, history, firebase }) => {
 import("prop-types").then(propTypes => {
   Navigation.propTypes = {
     authUser: propTypes.object,
+    changeTheme: propTypes.func,
     history: propTypes.object,
     firebase: propTypes.object
   };
