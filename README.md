@@ -1,4 +1,4 @@
-# Select Note
+# 📒 Select Note
 
 ![Select Note](./src/images/default.svg)
 
