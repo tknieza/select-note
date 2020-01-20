@@ -18,11 +18,8 @@ const NavigationButton = ({
       display: "flex",
       outline: "none",
       ":hover": {
-        backgroundColor: "secondary"
-      },
-
-      ":active": {
-        backgroundColor: "background"
+        backgroundColor: "background",
+        color: "primary"
       }
     }}
     onClick={() => {

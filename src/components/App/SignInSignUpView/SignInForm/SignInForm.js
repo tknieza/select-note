@@ -44,6 +44,7 @@ class SignInFormBase extends Component {
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          color="text"
         />
         <Input
           name="password"
@@ -51,6 +52,7 @@ class SignInFormBase extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          color="text"
         />
         <Button disabled={isInvalid} type="submit">
           Sign In

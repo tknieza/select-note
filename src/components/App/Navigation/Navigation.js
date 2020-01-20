@@ -32,16 +32,16 @@ const Navigation = ({ authUser, changeTheme, history, firebase }) => {
         marginBottom: "10rem"
       }}
     >
-      <Box mx="0.5rem" />
+      <Box mx="0.4rem" />
       <Box>
         <Image
           src={LogoLight}
           alt="logo"
-          height="3rem"
+          height="2.4rem"
           sx={{ paddingTop: "4px" }}
         />
       </Box>
-      <Box mx="0.5rem" />
+      <Box mx="0.6rem" />
       <Box>
         <NavigationButton
           content="Home"
@@ -80,14 +80,6 @@ const Navigation = ({ authUser, changeTheme, history, firebase }) => {
         </Box>
       ) : (
         <>
-          <Box>
-            <NavigationButton
-              content="Register"
-              route={ROUTES.SIGN_UP}
-              history={history}
-              icon={user}
-            />
-          </Box>
           <Box>
             <NavigationButton
               content="Login"

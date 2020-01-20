@@ -58,6 +58,7 @@ class SignUpFormBase extends React.Component {
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          color="text"
         />
         <Input
           name="passwordOne"
@@ -65,6 +66,7 @@ class SignUpFormBase extends React.Component {
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          color="text"
         />
         <Input
           name="passwordTwo"
@@ -72,6 +74,7 @@ class SignUpFormBase extends React.Component {
           onChange={this.onChange}
           type="password"
           placeholder="Confirm Password"
+          color="text"
         />
         <Button disabled={isInvalid} type="submit">
           Sign Up
