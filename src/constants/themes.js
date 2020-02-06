@@ -33,5 +33,16 @@ export default [
         monospace: "Roboto, sans-serif"
       }
     }
+  },
+  {
+    dark: false,
+    theme: {
+      ...THEMES.tosh,
+      fonts: {
+        body: "Roboto, sans-serif",
+        heading: "Roboto, sans-serif",
+        monospace: "Roboto, sans-serif"
+      }
+    }
   }
 ];

@@ -1,4 +1,3 @@
-import LandingPageView, { SignUpLink } from "./LandingPageView";
+import LandingPageView from "./LandingPageView";
 
 export default LandingPageView;
-export { SignUpLink };

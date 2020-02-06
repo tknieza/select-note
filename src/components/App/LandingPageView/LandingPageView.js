@@ -1,88 +1,127 @@
-import React from "react";
-import { Box, Text, Image, Flex, Card, Heading } from "rebass";
+import React, { useRef, useState } from "react";
+import { Box, Image, Flex, Card, Heading, Text } from "rebass";
+import { Canvas, useFrame } from "react-three-fiber";
+import NavigationButton from "../Navigation/NavigationButton";
 
-import LogoLight from "../../../images/default-monochrome-white.svg";
-import LogoDark from "../../../images/default-monochrome-black.svg";
+const cubeBigSize = 1.5;
+const cubeSmallSize = 1;
 
-const LandingPageView = ({ darkmode }) => {
+const Cube = props => {
+  // This reference will give us direct access to the mesh
+  const mesh = useRef();
+
+  // Set up state for the hovered and active state
+  const [hovered, setHover] = useState(false);
+  const [active, setActive] = useState(false);
+
+  // Rotate mesh every frame
+  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
   return (
-    <Flex
+    <mesh
+      {...props}
+      ref={mesh}
+      scale={
+        active
+          ? [cubeBigSize, cubeBigSize, cubeBigSize]
+          : [cubeSmallSize, cubeSmallSize, cubeSmallSize]
+      }
+      onClick={e => setActive(!active)}
+      onPointerOver={e => setHover(true)}
+      onPointerOut={e => setHover(false)}
+    >
+      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+      <meshStandardMaterial
+        attach="material"
+        color={hovered ? "hotpink" : "orange"}
+      />
+    </mesh>
+  );
+};
+
+const LandingPageView = ({ darkmode, routes, history }) => {
+  return (
+    <Box
       sx={{
-        flexDirection: "column",
         minHeight: "100vh",
+        width: "100%",
         backgroundColor: "background"
       }}
     >
       <Box
         sx={{
-          display: "grid",
-          flex: 1,
-          minHeight: "100vh",
-          gridTemplateAreas: [
-            '"long-box long-box" "left-box right-box" "wide-box wide-box"',
-            '"long-box long-box left-box right-box" "long-box long-box wide-box wide-box"'
-          ],
-          gridTemplateColumns: ["repeat(2, 1fr)", "repeat(4, 1fr)"],
-          gridTemplateRows: ["2fr 1fr 1fr", "none"],
-          gridGap: 20,
-          margin: 20
+          p: 3,
+          flexGrow: 2,
+          flexBasis: 0
         }}
       >
-        <Box
+        <Card
           sx={{
-            flex: 1,
-            gridArea: "long-box"
+            backgroundColor: "background",
+            width: "99%",
+            margin: "auto",
+            marginBottom: "1rem"
           }}
         >
-          <Box
+          <Heading
             sx={{
-              justifyContent: "center",
-              alignItems: "center"
+              fontFamily: "'Pacifico', cursive",
+              fontSize: ["3rem", "6rem"],
+              color: "primary",
+              userSelect: "none",
+              textAlign: "center"
             }}
           >
-            <Image
-              src={darkmode ? LogoLight : LogoDark}
-              alt="logo"
-              height="8rem"
-            />
-            <Text p={3} fontFamily="body" color="text">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Doloribus, quisquam qui. Quidem, itaque! Inventore nesciunt,
-              sapiente modi sint, cumque commodi quam deserunt laudantium
-              consequatur quos nostrum veritatis id accusamus eos?
-            </Text>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            flex: 1,
-            gridArea: "left-box"
-          }}
+            Select Note
+          </Heading>
+        </Card>
+        <Card
+          sx={{ backgroundColor: "background", width: "99%", margin: "auto" }}
         >
-          Box Left
-          <Card width={256}>
-            <Image src={LogoDark} alt="Logo" />
-            <Heading>Card</Heading>
-          </Card>
-        </Box>
-        <Box
-          sx={{
-            flex: 1,
-            gridArea: "right-box"
-          }}
+          <Heading
+            sx={{
+              fontFamily: "'Pacifico', cursive",
+              fontSize: ["1rem", "2rem"],
+              color: "secondary",
+              userSelect: "none",
+              textAlign: "center",
+              marginBottom: "1rem"
+            }}
+          >
+            Think it, write it, do it.
+          </Heading>
+        </Card>
+        <Card
+          sx={{ backgroundColor: "background", width: "99%", margin: "auto" }}
         >
-          Box Right
-        </Box>
-        <Box
-          sx={{
-            flex: 1,
-            gridArea: "wide-box"
-          }}
-        >
-          Wide box
-        </Box>
+          {/* <Text color="text" fontFamily="body">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint
+            voluptates nisi unde impedit recusandae! Consequuntur eaque eius
+            iusto necessitatibus corrupti accusamus, recusandae in omnis, vero
+            tenetur alias sint! Ducimus, ad.
+          </Text> */}
+        </Card>
       </Box>
-    </Flex>
+      <Box
+        sx={{
+          minHeight: "100%",
+          height: "30rem"
+        }}
+      >
+        <Canvas>
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+          <Cube position={[0, 0, 0]} />
+          <Cube position={[-cubeBigSize, 0, 0]} />
+          <Cube position={[cubeBigSize, 0, 0]} />
+          <Cube position={[0, -cubeBigSize, 0]} />
+          <Cube position={[-cubeBigSize, -cubeBigSize, 0]} />
+          <Cube position={[cubeBigSize, -cubeBigSize, 0]} />
+          <Cube position={[-cubeBigSize, cubeBigSize, 0]} />
+          <Cube position={[cubeBigSize, cubeBigSize, 0]} />
+          <Cube position={[0, cubeBigSize, 0]} />
+        </Canvas>
+      </Box>
+    </Box>
   );
 };
 

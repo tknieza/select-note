@@ -1,20 +1,14 @@
 import React from "react";
-
-import NavigationButton from "./NavigationButton";
-import { Box, Flex, Image, Button } from "rebass";
-
-// Icons
-import { signIn } from "react-icons-kit/oct/signIn";
-import { signOut } from "react-icons-kit/oct/signOut";
+import { Box, Flex, Image } from "rebass";
+import { browser } from "react-icons-kit/oct/browser";
 import { home } from "react-icons-kit/oct/home";
 import { note } from "react-icons-kit/oct/note";
-import { user } from "react-icons-kit/entypo/user";
-import { browser } from "react-icons-kit/oct/browser";
-
-import LogoLight from "../../../images/isolated-monochrome-white.svg";
-
+import { signIn } from "react-icons-kit/oct/signIn";
+import { signOut } from "react-icons-kit/oct/signOut";
+import NavigationButton from "./NavigationButton";
 import { usingFirebase } from "../../Firebase";
 import * as ROUTES from "../../../constants/routes";
+import LogoLight from "../../../images/isolated-monochrome-white.svg";
 
 const Navigation = ({ authUser, changeTheme, history, firebase }) => {
   return (
