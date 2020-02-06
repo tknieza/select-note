@@ -59,6 +59,7 @@ class SignUpFormBase extends React.Component {
           type="text"
           placeholder="Email Address"
           color="text"
+          my={2}
         />
         <Input
           name="passwordOne"
@@ -67,6 +68,7 @@ class SignUpFormBase extends React.Component {
           type="password"
           placeholder="Password"
           color="text"
+          my={2}
         />
         <Input
           name="passwordTwo"
@@ -75,6 +77,7 @@ class SignUpFormBase extends React.Component {
           type="password"
           placeholder="Confirm Password"
           color="text"
+          my={2}
         />
         <Button disabled={isInvalid} type="submit">
           Sign Up

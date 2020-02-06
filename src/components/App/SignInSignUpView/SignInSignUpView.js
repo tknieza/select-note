@@ -1,10 +1,7 @@
 import React from "react";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-import { Box, Heading, Text, Image } from "rebass";
-import { Link } from "react-router-dom";
-import Logo from "../../../images/default-monochrome-black.svg";
-import * as ROUTES from "../../../constants/routes";
+import { Box, Heading } from "rebass";
 
 export default () => {
   return (
@@ -15,7 +12,18 @@ export default () => {
       }}
     >
       <Box>
-        <Image src={Logo} alt="Logo" height="10rem" />
+        <Heading
+          sx={{
+            p: 3,
+            fontFamily: "'Pacifico', cursive",
+            fontSize: ["3rem", "6rem"],
+            color: "primary",
+            userSelect: "none",
+            textAlign: "center"
+          }}
+        >
+          Select Note
+        </Heading>
       </Box>
       <Box
         sx={{
@@ -29,9 +37,6 @@ export default () => {
         <Box p={3} width={["100%", "30rem"]}>
           <Heading color="primary">Sign In</Heading>
           <SignInForm />
-          <Text fontFamily="monospace">
-            Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-          </Text>
         </Box>
         <Box p={3} width={["100%", "30rem"]}>
           <Heading color="primary">Sign Up</Heading>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import { Button } from "rebass";
+import { Button, Box } from "rebass";
 import { Input } from "@rebass/forms";
 
 import * as ROUTES from "../../../../constants/routes";
@@ -37,7 +37,7 @@ class SignInFormBase extends Component {
     const { email, password } = this.state;
     const isInvalid = password === "" || email === "";
     return (
-      <form onSubmit={this.onSubmit}>
+      <Box as="form" onSubmit={this.onSubmit}>
         <Input
           name="email"
           value={email}
@@ -45,6 +45,7 @@ class SignInFormBase extends Component {
           type="text"
           placeholder="Email Address"
           color="text"
+          my={2}
         />
         <Input
           name="password"
@@ -53,11 +54,12 @@ class SignInFormBase extends Component {
           type="password"
           placeholder="Password"
           color="text"
+          my={2}
         />
         <Button disabled={isInvalid} type="submit">
           Sign In
         </Button>
-      </form>
+      </Box>
     );
   }
 }
