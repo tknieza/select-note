@@ -36,6 +36,6 @@
     "react-three-fiber": "^4.0.14",
     "rebass": "^4.0.7",
     "theme-ui": "^0.2.52",
-    "three": "^0.113.2"
+    "three": "^0.137.0"
   }
 }
